@@ -1,5 +1,8 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+  import { fetchPlaceholders } from '/scripts/placeholders.js';
+
+
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -113,6 +116,15 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
+
+
+// fetch placeholders from the 'en' folder
+const placeholders = await fetchPlaceholders('config-sheets');
+// retrieve the value for key 'foo'
+alert(placeholders);
+
+
+  
   // load nav as fragment
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
