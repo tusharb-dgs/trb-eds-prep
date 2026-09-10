@@ -121,7 +121,8 @@ export default async function decorate(block) {
 // fetch placeholders from the 'en' folder
 const placeholders = await fetchPlaceholders('config-sheets');
 // retrieve the value for key 'foo'
-alert(placeholders);
+  const { foo } = placeholders;
+console.log(foo);
 
 
   
