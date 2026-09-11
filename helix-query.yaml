@@ -4,7 +4,7 @@ indices:
   documentaries:
     # 1. Which paths to include or exclude from this index
     include:
-      - '/documentaries/**'   # Matches any document inside the documentaries folder
+      - '/*'   # Matches any document inside the documentaries folder
     exclude:
       - '/**.json'            # Excludes JSON data files from being indexed
     
