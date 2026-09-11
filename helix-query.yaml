@@ -1,0 +1,29 @@
+version: 1
+
+indices:
+  documentaries:
+    # 1. Which paths to include or exclude from this index
+    include:
+      - '/documentaries/**'   # Matches any document inside the documentaries folder
+    exclude:
+      - '/**.json'            # Excludes JSON data files from being indexed
+    
+    # 2. Where the final compiled index file will be served
+    target: /query-index.json
+
+    # 3. Properties/columns to extract from each page
+    properties:
+      # Automatically extracts the core URL path of the document
+      path:
+        select: none
+        value: path
+      
+      # Extracts the standard meta title
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, 'content')
+      
+      # Extracts the description
+      description:
+        select: head > meta[name="title"]
+        value: attribute(el, 'content')
