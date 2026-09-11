@@ -1,29 +1,21 @@
 version: 1
 
 indices:
-  documentaries:
-    # 1. Which paths to include or exclude from this index
+  site-index:
     include:
-      - '/*'   # Matches any document inside the documentaries folder
+      - '/**'                 # Matches everything from the root folder down to the deepest subfolder
     exclude:
-      - '/**.json'            # Excludes JSON data files from being indexed
+      - '/**.json'            # Excludes data files/spreadsheets from being indexed
+      - '/nav'                # Optional: Excludes global navigation documents
+      - '/footer'             # Optional: Excludes global footer documents
     
-    # 2. Where the final compiled index file will be served
     target: /query-index.json
 
-    # 3. Properties/columns to extract from each page
     properties:
-      # Automatically extracts the core URL path of the document
       path:
         select: none
         value: path
       
-      # Extracts the standard meta title
       title:
         select: head > meta[property="og:title"]
-        value: attribute(el, 'content')
-      
-      # Extracts the description
-      description:
-        select: head > meta[name="title"]
         value: attribute(el, 'content')
