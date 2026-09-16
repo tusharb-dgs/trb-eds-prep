@@ -1,0 +1,68 @@
+/* Hero banner: full-bleed intro banner, text column + decorative side image.
+   Structural/functional only — brand color, typography, and spacing tokens are
+   left to the design pass. */
+
+.hero-banner-container .hero-banner-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.hero-banner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 40px 24px;
+  min-height: 220px;
+  overflow: hidden;
+}
+
+.hero-banner .hero-banner-text {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-banner .hero-banner-eyebrow {
+  margin: 0 0 8px;
+}
+
+/* Decorative image sits at the right on wide screens; stacked on mobile. */
+.hero-banner .hero-banner-media {
+  position: relative;
+  z-index: 0;
+}
+
+.hero-banner .hero-banner-media picture,
+.hero-banner .hero-banner-media img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.hero-banner.no-image .hero-banner-media {
+  display: none;
+}
+
+@media (width >= 900px) {
+  .hero-banner {
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 32px;
+    min-height: 300px;
+  }
+
+  .hero-banner .hero-banner-text {
+    margin: 0;
+    flex: 1 1 60%;
+  }
+
+  .hero-banner .hero-banner-media {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

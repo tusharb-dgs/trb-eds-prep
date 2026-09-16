@@ -1,0 +1,43 @@
+/* Promo cards: row of image-less promo cards (eyebrow, heading, paragraph, CTA)
+   with a bottom accent bar. Structural/functional only — brand color,
+   typography, and spacing tokens are left to the design pass. */
+
+.cards-promo > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.cards-promo > ul > li {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.cards-promo .cards-promo-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.cards-promo .cards-promo-eyebrow {
+  margin: 0;
+}
+
+.cards-promo .cards-promo-card-body a {
+  display: inline-block;
+  margin-top: auto;
+}
+
+@media (width >= 600px) {
+  .cards-promo > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

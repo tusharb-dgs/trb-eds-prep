@@ -1,0 +1,30 @@
+:root {
+  /* Typography — VYEPTI uses Proxima Nova (Adobe Fonts / Typekit) */
+  --heading-font-family: proxima-nova, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+  --body-font-family: proxima-nova, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+
+  /* Brand colors */
+  --background-color: rgb(255 255 255);
+  --text-color: rgb(51 51 51);
+  --link-color: rgb(4 97 131);
+  --link-hover-color: rgb(0 86 179);
+
+  /* VYEPTI brand palette */
+  --brand-blue: rgb(4 97 131);
+  --brand-coral: rgb(224 62 82);
+  --powder-blue: rgb(239 246 249);
+  --dark-blue: rgb(4 97 131);
+
+  /* Spacing */
+  --section-padding: 48px;
+  --content-max-width: 1200px;
+  --nav-height: 97px;
+
+  /* Heading sizes (desktop) */
+  --heading-size-xxl: 40px;
+  --heading-size-xl: 28px;
+  --heading-size-l: 24px;
+  --heading-size-m: 22px;
+  --heading-size-s: 18px;
+  --heading-size-xs: 18px;
+}

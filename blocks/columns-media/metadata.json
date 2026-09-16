@@ -1,0 +1,10 @@
+{
+  "variantName": "columns-media",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "Powder-blue section with a two-column layout: a text column (heading, paragraphs, bulleted list) beside a mechanism-of-action media graphic with a labeled legend.",
+  "contentPattern": "1 row with 2 cells: cell 1 = heading + paragraphs + list; cell 2 = image/graphic (+ legend text).",
+  "usage": "Explanatory side-by-side layout pairing descriptive text with a supporting media graphic.",
+  "options": [],
+  "memberVariantIds": ["columns-media"]
+}

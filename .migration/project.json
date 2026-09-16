@@ -1,0 +1,11 @@
+{
+  "type": "da",
+  "sites": {
+    "trb-eds-prep": {
+      "previewOrg": "tusharb-dgs",
+      "previewSite": "trb-eds-prep",
+      "contentHostUrl": "https://content.da.live/tusharb-dgs/trb-eds-prep/",
+      "libraryUrl": "https://main--sta-boilerplate--aemdemos.aem.page/tools/sidekick/library.json"
+    }
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "templates": [
+    {
+      "name": "how-vyepti-works",
+      "urls": [
+        "https://www.vyepti.com/how-vyepti-works"
+      ],
+      "representativeUrl": "https://www.vyepti.com/how-vyepti-works",
+      "description": "",
+      "blocks": [
+        {
+          "name": "hero-banner",
+          "instances": [
+            ".sub-banner-teaser"
+          ]
+        },
+        {
+          "name": "cards-feature",
+          "instances": [
+            ".what-vyepti-section"
+          ]
+        },
+        {
+          "name": "columns-media",
+          "instances": [
+            ".how-vyepti-section"
+          ]
+        },
+        {
+          "name": "columns-cta",
+          "instances": [
+            ".narrowCardCta"
+          ]
+        },
+        {
+          "name": "carousel-quote",
+          "instances": [
+            ".quotescardcarousel"
+          ]
+        },
+        {
+          "name": "cards-promo",
+          "instances": [
+            ".columncontainer:nth-of-type(6)"
+          ]
+        }
+      ],
+      "urlPattern": "/*",
+      "sections": [
+        {
+          "id": "rc3",
+          "name": "hero-sub-banner",
+          "selector": [
+            ".sub-banner-teaser"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-banner"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc4",
+          "name": "what-is-vyepti-features",
+          "selector": [
+            ".what-vyepti-section"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-feature"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc5",
+          "name": "how-vyepti-works-moa",
+          "selector": [
+            ".section-powder-blue-bg-desktop.how-vyepti-section",
+            ".how-vyepti-section"
+          ],
+          "style": "powder-blue",
+          "blocks": [
+            "columns-media"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc6",
+          "name": "talk-to-a-nurse-cta",
+          "selector": [
+            ".narrowCardCta"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-cta"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc7",
+          "name": "patient-testimonial",
+          "selector": [
+            ".quotescardcarousel"
+          ],
+          "style": null,
+          "blocks": [
+            "carousel-quote"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc8",
+          "name": "promo-cards",
+          "selector": [
+            ".columncontainer:nth-of-type(6)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-promo"
+          ],
+          "defaultContent": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "projectType": "da"
+  }
+}

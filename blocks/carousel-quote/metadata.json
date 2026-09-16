@@ -1,0 +1,10 @@
+{
+  "variantName": "carousel-quote",
+  "baseBlock": "carousel",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "Dark-blue testimonial/quote carousel with a quotation-mark icon, patient quote, attribution and disclaimer over a patient photo. Slide indicators and prev/next controls indicate a swipable set.",
+  "contentPattern": "One row per slide, 2 cells: cell 1 = patient image, cell 2 = quote + attribution + disclaimer.",
+  "usage": "A rotating set of patient/customer testimonial slides.",
+  "options": [],
+  "memberVariantIds": ["carousel-quote"]
+}

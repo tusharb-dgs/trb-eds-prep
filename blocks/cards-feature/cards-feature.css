@@ -1,0 +1,40 @@
+/* Feature cards: row of icon-badge items with centered text, no CTA.
+   Structural/functional only — brand color, typography, and spacing tokens are
+   left to the design pass. */
+
+.cards-feature > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.cards-feature > ul > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.cards-feature .cards-feature-card-icon {
+  line-height: 0;
+  margin-bottom: 12px;
+}
+
+.cards-feature .cards-feature-card-icon img {
+  width: auto;
+  max-width: 140px;
+  height: auto;
+}
+
+.cards-feature .cards-feature-card-body {
+  width: 100%;
+}
+
+@media (width >= 600px) {
+  .cards-feature > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

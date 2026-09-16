@@ -1,0 +1,39 @@
+/* Media columns: text column paired with a media/graphic column.
+   Structural/functional only — brand color, typography, and spacing tokens are
+   left to the design pass. (Powder-blue section background is applied via
+   section-metadata, not here.) */
+
+.columns-media > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.columns-media img {
+  width: 100%;
+  height: auto;
+}
+
+.columns-media > div > div {
+  order: 1;
+}
+
+.columns-media > div > .columns-media-img-col {
+  order: 0;
+}
+
+.columns-media > div > .columns-media-img-col img {
+  display: block;
+}
+
+@media (width >= 900px) {
+  .columns-media > div {
+    align-items: center;
+    flex-direction: unset;
+  }
+
+  .columns-media > div > div {
+    flex: 1;
+    order: unset;
+  }
+}

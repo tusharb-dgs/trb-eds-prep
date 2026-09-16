@@ -1,0 +1,10 @@
+{
+  "variantName": "columns-cta",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "Single wide callout card with a decorative accent shape: eyebrow, heading and paragraph on the left, a single CTA button on the right.",
+  "contentPattern": "1 row with 2 cells: cell 1 = eyebrow + heading + paragraph; cell 2 = CTA link/button.",
+  "usage": "A standalone side-by-side callout pairing a short message with a single call-to-action.",
+  "options": [],
+  "memberVariantIds": ["columns-cta"]
+}

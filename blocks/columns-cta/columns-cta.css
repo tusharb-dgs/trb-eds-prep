@@ -1,0 +1,36 @@
+/* CTA columns: single wide callout card, text on one side, CTA button on the other.
+   Structural/functional only — brand color, typography, and spacing tokens are
+   left to the design pass. */
+
+.columns-cta > div {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.columns-cta .columns-cta-eyebrow {
+  margin: 0;
+}
+
+.columns-cta .columns-cta-action-col a {
+  display: inline-block;
+}
+
+@media (width >= 900px) {
+  .columns-cta > div {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .columns-cta > div > div {
+    flex: 1;
+  }
+
+  .columns-cta .columns-cta-action-col {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

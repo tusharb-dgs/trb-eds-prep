@@ -1,0 +1,10 @@
+{
+  "variantName": "hero-banner",
+  "baseBlock": "hero",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "Full-bleed light-blue gradient banner with an eyebrow line, a large headline, and a decorative IV/drip-bag image at the right. Not a full-cover hero — the image is a side decoration over the gradient.",
+  "contentPattern": "1 column, up to 2 rows: an optional decorative image row and a heading row (eyebrow paragraph, heading, optional subheading).",
+  "usage": "Page-intro sub-banner combining a headline with a decorative side image over a gradient background.",
+  "options": [],
+  "memberVariantIds": ["hero-banner"]
+}

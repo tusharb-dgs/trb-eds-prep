@@ -1,0 +1,10 @@
+{
+  "variantName": "cards-promo",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "Two image-less promo cards, each with an eyebrow, heading, short paragraph, a pill CTA button, and a bottom accent bar.",
+  "contentPattern": "One row per card, a single cell: eyebrow + heading + description + CTA link.",
+  "usage": "A row of promotional cards driving to related pages via a CTA.",
+  "options": [],
+  "memberVariantIds": ["cards-promo"]
+}
