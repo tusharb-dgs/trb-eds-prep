@@ -43,6 +43,12 @@
           "instances": [
             ".columncontainer:nth-of-type(6)"
           ]
+        },
+        {
+          "name": "isi",
+          "instances": [
+            ".safetyInfo.isiFocus"
+          ]
         }
       ],
       "urlPattern": "/*",
@@ -117,6 +123,18 @@
           "style": null,
           "blocks": [
             "cards-promo"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc9",
+          "name": "important-safety-information",
+          "selector": [
+            ".safetyInfo.isiFocus"
+          ],
+          "style": null,
+          "blocks": [
+            "isi"
           ],
           "defaultContent": []
         }

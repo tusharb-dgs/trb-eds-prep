@@ -195,10 +195,38 @@ var CustomImportScript = (() => {
     element.replaceWith(block);
   }
 
+  // tools/importer/parsers/isi.js
+  function parse7(element, { document: document2 }) {
+    const scope = element.querySelector(".container") || element;
+    const wanted = "h1, h2, h3, h4, h5, h6, p, ul, ol";
+    const nodes = [...scope.querySelectorAll(wanted)].filter((n) => {
+      if (n.closest("li")) return false;
+      return true;
+    });
+    const cell = document2.createElement("div");
+    nodes.forEach((n) => {
+      if (!n.textContent.trim() && !n.querySelector("a, img")) return;
+      cell.append(n.cloneNode(true));
+    });
+    if (!cell.childNodes.length) {
+      cell.append(scope.cloneNode(true));
+    }
+    const block = WebImporter.Blocks.createBlock(document2, {
+      name: "isi",
+      cells: [[cell]]
+    });
+    element.replaceWith(block);
+  }
+
   // tools/importer/transformers/vyepti-cleanup.js
   var TransformHook = { beforeTransform: "beforeTransform", afterTransform: "afterTransform" };
   function transform(hookName, element, payload) {
     if (hookName === TransformHook.beforeTransform) {
+      const isiPanel = element.querySelector(".safetyInfo.isiFocus");
+      const grid = element.querySelector(".root.responsivegrid > .aem-Grid") || element.querySelector(".root.responsivegrid");
+      if (isiPanel && grid) {
+        grid.append(isiPanel);
+      }
       WebImporter.DOMUtils.remove(element, [
         "#cookie-information-template-wrapper",
         ".interstitialmodal",
@@ -286,7 +314,8 @@ var CustomImportScript = (() => {
     "columns-media": parse3,
     "columns-cta": parse4,
     "carousel-quote": parse5,
-    "cards-promo": parse6
+    "cards-promo": parse6,
+    "isi": parse7
   };
   var PAGE_TEMPLATE = {
     name: "how-vyepti-works",
@@ -300,7 +329,8 @@ var CustomImportScript = (() => {
       { name: "columns-media", instances: [".how-vyepti-section"] },
       { name: "columns-cta", instances: [".narrowCardCta"] },
       { name: "carousel-quote", instances: [".quotescardcarousel"] },
-      { name: "cards-promo", instances: [".columncontainer:nth-of-type(6)"] }
+      { name: "cards-promo", instances: [".columncontainer:nth-of-type(6)"] },
+      { name: "isi", instances: [".safetyInfo.isiFocus"] }
     ],
     sections: [
       { id: "rc3", name: "hero-sub-banner", selector: [".sub-banner-teaser"], style: null, blocks: ["hero-banner"], defaultContent: [] },
@@ -308,7 +338,8 @@ var CustomImportScript = (() => {
       { id: "rc5", name: "how-vyepti-works-moa", selector: [".section-powder-blue-bg-desktop.how-vyepti-section", ".how-vyepti-section"], style: "powder-blue", blocks: ["columns-media"], defaultContent: [] },
       { id: "rc6", name: "talk-to-a-nurse-cta", selector: [".narrowCardCta"], style: null, blocks: ["columns-cta"], defaultContent: [] },
       { id: "rc7", name: "patient-testimonial", selector: [".quotescardcarousel"], style: null, blocks: ["carousel-quote"], defaultContent: [] },
-      { id: "rc8", name: "promo-cards", selector: [".columncontainer:nth-of-type(6)"], style: null, blocks: ["cards-promo"], defaultContent: [] }
+      { id: "rc8", name: "promo-cards", selector: [".columncontainer:nth-of-type(6)"], style: null, blocks: ["cards-promo"], defaultContent: [] },
+      { id: "rc9", name: "important-safety-information", selector: [".safetyInfo.isiFocus"], style: null, blocks: ["isi"], defaultContent: [] }
     ]
   };
   var transformers = [

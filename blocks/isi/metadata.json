@@ -1,0 +1,10 @@
+{
+  "variantName": "isi",
+  "baseBlock": "isi",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "Full-width rich-text safety/legal panel closing the page: brand-blue section headings (APPROVED USE, IMPORTANT SAFETY INFORMATION), gray body paragraphs, a bulleted list of serious side effects, and bold reference links.",
+  "contentPattern": "A single rich-text cell: headings, paragraphs, a bulleted list, and links in reading order.",
+  "usage": "Regulatory Important Safety Information block placed at the bottom of every product page.",
+  "options": [],
+  "memberVariantIds": ["isi"]
+}

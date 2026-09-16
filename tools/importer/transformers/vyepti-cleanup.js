@@ -11,6 +11,21 @@ const TransformHook = { beforeTransform: 'beforeTransform', afterTransform: 'aft
 
 export default function transform(hookName, element, payload) {
   if (hookName === TransformHook.beforeTransform) {
+    // Relocate the full ISI (Important Safety Information) panel into the main
+    // section grid so it survives shell removal and lands as the LAST section —
+    // matching the source page, where the expanded ISI closes the content.
+    // The ISI fragment holds two panels: a collapsed sticky bar and the full
+    // expanded panel `.safetyInfo.isiFocus` (starts with "APPROVED USE"). We keep
+    // only the expanded panel and move it into `.root.responsivegrid > .aem-Grid`.
+    // This runs before the sections transformer's beforeTransform (cleanup is
+    // first in the transformer array), so the section <hr> is inserted correctly.
+    const isiPanel = element.querySelector('.safetyInfo.isiFocus');
+    const grid = element.querySelector('.root.responsivegrid > .aem-Grid')
+      || element.querySelector('.root.responsivegrid');
+    if (isiPanel && grid) {
+      grid.append(isiPanel);
+    }
+
     // Overlays/modals removed before block parsing so they never block matching.
     // - Cookie consent banner/modal (cleaned.html line 2: #cookie-information-template-wrapper).
     // - Interstitial / redirect / popup modals (cleaned.html lines 2568-2672):

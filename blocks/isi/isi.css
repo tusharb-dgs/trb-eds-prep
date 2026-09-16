@@ -1,0 +1,48 @@
+/* ISI (Important Safety Information): rich-text safety/legal panel at page end.
+   Values extracted from source computed styles (.safetyInfo.isiFocus). */
+
+.isi .isi-content {
+  max-width: var(--content-max-width, 1200px);
+  margin: 0 auto;
+  padding: 24px 0;
+}
+
+/* Section headings — APPROVED USE / IMPORTANT SAFETY INFORMATION */
+.isi .isi-content h5 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+  color: var(--brand-blue);
+}
+
+.isi .isi-content p {
+  margin: 0 0 16px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgb(72 72 72);
+}
+
+.isi .isi-content ul {
+  margin: 0 0 16px;
+  padding-left: 20px;
+}
+
+.isi .isi-content li {
+  margin: 0 0 12px;
+  font-size: 16px;
+  line-height: 27px;
+  color: rgb(72 72 72);
+}
+
+.isi .isi-content a:any-link {
+  color: rgb(72 72 72);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.isi .isi-content a:hover,
+.isi .isi-content a:focus-visible {
+  text-decoration: underline;
+}

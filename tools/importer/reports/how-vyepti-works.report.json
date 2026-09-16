@@ -2,7 +2,7 @@
   "status": "success",
   "url": "https://www.vyepti.com/how-vyepti-works",
   "path": "how-vyepti-works",
-  "timestamp": "2026-09-16T12:43:39.329Z",
+  "timestamp": "2026-09-16T13:56:27.554Z",
   "title": "How VYEPTI® Works: Designed to Help Prevent Migraine Attacks",
   "template": "how-vyepti-works",
   "blocks": [
@@ -11,6 +11,7 @@
     "columns-media",
     "columns-cta",
     "carousel-quote",
-    "cards-promo"
+    "cards-promo",
+    "isi"
   ]
 }

@@ -58,7 +58,7 @@
 .cards-promo .cards-promo-card-body h2 {
   margin: 0;
   color: rgb(192 44 87);
-  font-size: var(--heading-font-size-l);
+  font-size: 24px;
   font-weight: 700;
   line-height: 1.1;
 }

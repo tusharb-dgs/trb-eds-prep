@@ -8,6 +8,7 @@ import columnsMediaParser from './parsers/columns-media.js';
 import columnsCtaParser from './parsers/columns-cta.js';
 import carouselQuoteParser from './parsers/carousel-quote.js';
 import cardsPromoParser from './parsers/cards-promo.js';
+import isiParser from './parsers/isi.js';
 
 // TRANSFORMER IMPORTS
 import cleanupTransformer from './transformers/vyepti-cleanup.js';
@@ -21,6 +22,7 @@ const parsers = {
   'columns-cta': columnsCtaParser,
   'carousel-quote': carouselQuoteParser,
   'cards-promo': cardsPromoParser,
+  'isi': isiParser,
 };
 
 // PAGE TEMPLATE CONFIGURATION - Embedded from page-templates.json
@@ -37,6 +39,7 @@ const PAGE_TEMPLATE = {
     { name: 'columns-cta', instances: ['.narrowCardCta'] },
     { name: 'carousel-quote', instances: ['.quotescardcarousel'] },
     { name: 'cards-promo', instances: ['.columncontainer:nth-of-type(6)'] },
+    { name: 'isi', instances: ['.safetyInfo.isiFocus'] },
   ],
   sections: [
     { id: 'rc3', name: 'hero-sub-banner', selector: ['.sub-banner-teaser'], style: null, blocks: ['hero-banner'], defaultContent: [] },
@@ -45,6 +48,7 @@ const PAGE_TEMPLATE = {
     { id: 'rc6', name: 'talk-to-a-nurse-cta', selector: ['.narrowCardCta'], style: null, blocks: ['columns-cta'], defaultContent: [] },
     { id: 'rc7', name: 'patient-testimonial', selector: ['.quotescardcarousel'], style: null, blocks: ['carousel-quote'], defaultContent: [] },
     { id: 'rc8', name: 'promo-cards', selector: ['.columncontainer:nth-of-type(6)'], style: null, blocks: ['cards-promo'], defaultContent: [] },
+    { id: 'rc9', name: 'important-safety-information', selector: ['.safetyInfo.isiFocus'], style: null, blocks: ['isi'], defaultContent: [] },
   ],
 };
 
