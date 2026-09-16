@@ -1,68 +1,101 @@
-/* Hero banner: full-bleed intro banner, text column + decorative side image.
-   Structural/functional only — brand color, typography, and spacing tokens are
-   left to the design pass. */
+/* Hero banner (VYEPTI "sub-banner-teaser"): full-bleed light-blue gradient banner.
+   Source mechanism: a single full-bleed background PNG (1440x240 on desktop) that has
+   the gradient AND the decorative IV drip-bag baked into it, with the eyebrow + headline
+   text overlaid on the left over a centered content column.
+   Values extracted from getComputedStyle on .teaser.sub-banner-teaser. */
 
+/* Full-bleed: escape the section's centered/max-width container. */
 .hero-banner-container .hero-banner-wrapper {
   max-width: unset;
   padding: 0;
+  margin: 0;
 }
 
 .hero-banner {
   position: relative;
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 40px 24px;
-  min-height: 220px;
+  align-items: center;
   overflow: hidden;
+  min-height: 180px;
+  padding: 0;
+  /* fallback tint behind/around the decorative image */
+  background-color: var(--powder-blue);
 }
 
-.hero-banner .hero-banner-text {
-  position: relative;
-  z-index: 1;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.hero-banner .hero-banner-eyebrow {
-  margin: 0 0 8px;
-}
-
-/* Decorative image sits at the right on wide screens; stacked on mobile. */
+/* Decorative image fills the banner edge-to-edge, behind the text. */
 .hero-banner .hero-banner-media {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 0;
 }
 
 .hero-banner .hero-banner-media picture,
 .hero-banner .hero-banner-media img {
   display: block;
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* keep the IV drip-bag (baked into the right of the image) visible when cropped */
+  object-position: right center;
 }
 
 .hero-banner.no-image .hero-banner-media {
   display: none;
 }
 
+/* Text overlay, aligned to a centered content column (matches page content width). */
+.hero-banner .hero-banner-text {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--content-max-width, 1200px);
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+/* Eyebrow ("How VYEPTI Works") — authored as an h3. */
+.hero-banner .hero-banner-text h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  color: var(--text-color);
+}
+
+/* Headline ("Designed to help prevent migraine attacks"). */
+.hero-banner .hero-banner-text h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 36px;
+  color: var(--brand-blue);
+}
+
 @media (width >= 900px) {
   .hero-banner {
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: space-between;
-    padding: 40px 32px;
-    min-height: 300px;
+    min-height: 240px;
   }
 
   .hero-banner .hero-banner-text {
-    margin: 0;
-    flex: 1 1 60%;
+    max-width: 1140px;
+    padding: 0 15px;
   }
 
-  .hero-banner .hero-banner-media {
-    flex: 0 0 auto;
-    display: flex;
-    justify-content: flex-end;
+  /* Source constrains the text to ~800px, leaving the right portion of the
+     banner for the decorative IV drip-bag baked into the background image. */
+  .hero-banner .hero-banner-text h3,
+  .hero-banner .hero-banner-text h1 {
+    max-width: 800px;
+  }
+
+  .hero-banner .hero-banner-text h3 {
+    margin: 0 0 13px;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .hero-banner .hero-banner-text h1 {
+    font-size: 56px;
+    line-height: 60px;
   }
 }
