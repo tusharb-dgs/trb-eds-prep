@@ -18,6 +18,7 @@
   overflow: hidden;
   min-height: 180px;
   padding: 0;
+
   /* fallback tint behind/around the decorative image */
   background-color: var(--powder-blue);
 }
@@ -35,6 +36,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+
   /* keep the IV drip-bag (baked into the right of the image) visible when cropped */
   object-position: right center;
 }

@@ -1,7 +1,16 @@
-/* Quote carousel: swipable testimonial slides (patient image + quote overlay).
-   Structural/functional only — layout, scroll-snap, and control affordances.
-   Brand color, typography, and spacing tokens are left to the design pass;
-   the neutral overlay/control colors below are functional (contrast) defaults. */
+/* Quote carousel: a dark-blue testimonial card with a patient quote (left) and
+   patient photo (right). Values extracted from source computed styles
+   (vyepti.com/how-vyepti-works .quotescardcarousel). Single slide renders as a
+   static card; multi-slide adds scroll-snap + controls.
+
+   Decorated DOM (from block JS decorate()):
+     .carousel-quote
+       .carousel-quote-slides-container
+         ul.carousel-quote-slides
+           li.carousel-quote-slide          <- the dark-blue card
+             .carousel-quote-slide-image     <- cell 1 (patient photo, DOM-first)
+             .carousel-quote-slide-content    <- cell 2 (h2 quote + attribution + disclaimer)
+*/
 
 .carousel-quote .carousel-quote-slides-container {
   position: relative;
@@ -18,52 +27,113 @@
   display: flex;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
-  overflow: scroll clip;
+  overflow: hidden;
 }
 
 .carousel-quote .carousel-quote-slides::-webkit-scrollbar {
   display: none;
 }
 
+/* --- The card --- */
 .carousel-quote .carousel-quote-slide {
   flex: 0 0 100%;
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  overflow: hidden;
   position: relative;
-  width: 100%;
-  min-height: min(50vw, calc(100dvh - var(--header-height)));
+  background-color: var(--dark-blue); /* rgb(4, 97, 131) */
+  color: #fff;
+  border-radius: 12px;
 }
 
-.carousel-quote .carousel-quote-slide:has(.carousel-quote-slide-content[data-align='center']) {
-  align-items: center;
+/* --- Text content column --- */
+.carousel-quote .carousel-quote-slide-content {
+  padding: 32px 28px 36px;
 }
 
-.carousel-quote .carousel-quote-slide:has(.carousel-quote-slide-content[data-align='right']) {
+/* decorative quotation-mark badge (source renders a 60px circular icon) */
+.carousel-quote .carousel-quote-slide-content::before {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  background-color: rgb(255 255 255 / 15%);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M6.5 6.5h5v5.2c0 3.1-2 5.1-5 5.3v-2.1c1.5-.2 2.4-1 2.5-2.4H6.5V6.5zm8 0h5v5.2c0 3.1-2 5.1-5 5.3v-2.1c1.5-.2 2.4-1 2.5-2.4h-2.5V6.5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 30px;
+}
+
+/* quote heading */
+.carousel-quote .carousel-quote-slide-content h2 {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* coral divider between quote and attribution (source: <hr> 50x4 rgb(241,100,100)) */
+.carousel-quote .carousel-quote-slide-content p:first-of-type::before {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 4px;
+  margin: 24px 0 16px;
+  background-color: rgb(241 100 100);
+}
+
+/* attribution ("Electra, VYEPTI patient") */
+.carousel-quote .carousel-quote-slide-content p:first-of-type {
+  margin: 0;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.carousel-quote .carousel-quote-slide-content p:first-of-type strong {
+  font-weight: 700;
+}
+
+/* disclaimer */
+.carousel-quote .carousel-quote-slide-content p:last-of-type {
+  margin: 8px 0 0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+/* --- Image column --- */
+.carousel-quote .carousel-quote-slide-image {
+  display: flex;
   align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.carousel-quote .carousel-quote-slide .carousel-quote-slide-image picture {
-  position: absolute;
-  inset: 0;
-}
-
-.carousel-quote .carousel-quote-slide .carousel-quote-slide-image picture > img {
-  height: 100%;
+.carousel-quote .carousel-quote-slide-image picture {
+  display: flex;
   width: 100%;
+  height: 100%;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.carousel-quote .carousel-quote-slide-image img {
+  display: block;
+  width: 100%;
+  height: auto;
   object-fit: cover;
+  object-position: bottom center;
 }
 
-.carousel-quote .carousel-quote-slide .carousel-quote-slide-content {
-  z-index: 1;
-  margin: 68px;
-  padding: 16px;
-  position: relative;
-  width: var(--slide-content-width, auto);
-}
-
+/* --- Slide indicators / nav (multi-slide only) --- */
 .carousel-quote .carousel-quote-slide-indicators {
   display: flex;
   flex-wrap: wrap;
@@ -74,19 +144,21 @@
 }
 
 .carousel-quote .carousel-quote-slide-indicator button {
-  width: 16px;
-  height: 16px;
+  width: 12px;
+  height: 12px;
   margin: 0;
   padding: 0;
+  border: 0;
   border-radius: 50%;
-  background-color: #dadada;
+  background-color: rgb(255 255 255 / 40%);
+  cursor: pointer;
   transition: background-color 0.2s;
 }
 
 .carousel-quote .carousel-quote-slide-indicator button:disabled,
 .carousel-quote .carousel-quote-slide-indicator button:hover,
 .carousel-quote .carousel-quote-slide-indicator button:focus-visible {
-  background-color: #767676;
+  background-color: rgb(241 100 100);
 }
 
 .carousel-quote .carousel-quote-navigation-buttons {
@@ -107,21 +179,23 @@
   width: 44px;
   height: 44px;
   margin: 0;
+  border: 0;
   border-radius: 50%;
   padding: 0;
-  background-color: rgb(19 19 19 / 25%);
+  background-color: rgb(255 255 255 / 25%);
+  cursor: pointer;
   transition: background-color 0.2s;
 }
 
 .carousel-quote .carousel-quote-navigation-buttons button:hover,
 .carousel-quote .carousel-quote-navigation-buttons button:focus-visible {
-  background-color: rgb(19 19 19 / 75%);
+  background-color: rgb(255 255 255 / 55%);
 }
 
 .carousel-quote .carousel-quote-navigation-buttons button::after {
   display: block;
   content: '';
-  border: 2px solid;
+  border: 2px solid #fff;
   border-bottom: 0;
   border-left: 0;
   height: 12px;
@@ -137,19 +211,44 @@
   left: calc(50% - 2px);
 }
 
-@media (width >= 600px) {
-  .carousel-quote .carousel-quote-navigation-buttons {
-    left: 24px;
-    right: 24px;
+/* --- Desktop: text left, image right --- */
+@media (width >= 900px) {
+  .carousel-quote .carousel-quote-slide {
+    flex-direction: row-reverse; /* content (DOM 2nd) left, image (DOM 1st) right */
+    align-items: stretch;
+    min-height: 300px;
   }
 
-  .carousel-quote .carousel-quote-slide .carousel-quote-slide-content {
-    --slide-content-width: calc((100% - 184px) / 2);
-
-    margin: 92px;
+  .carousel-quote .carousel-quote-slide-content {
+    flex: 1 1 58%;
+    align-self: center;
+    padding: 44px 24px 44px 56px;
   }
 
-  .carousel-quote .carousel-quote-slide .carousel-quote-slide-content[data-align='justify'] {
-    --slide-content-width: auto;
+  .carousel-quote .carousel-quote-slide-content h2 {
+    padding-right: 40px;
+    font-size: 24px;
+    line-height: 1.38;
+  }
+
+  .carousel-quote .carousel-quote-slide-image {
+    flex: 0 0 40%;
+    align-self: stretch;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  .carousel-quote .carousel-quote-slide-image picture {
+    height: 100%;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  .carousel-quote .carousel-quote-slide-image img {
+    width: auto;
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: bottom right;
   }
 }

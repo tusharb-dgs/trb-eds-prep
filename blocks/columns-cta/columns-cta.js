@@ -1,9 +1,10 @@
 /**
- * CTA columns: a single wide callout card with a text column (eyebrow, heading,
- * paragraph) on one side and a CTA button on the other.
+ * CTA columns: a single wide callout card. The text column holds a decorative
+ * accent shape, an eyebrow heading, a title and a paragraph; the action column
+ * holds a single CTA button.
  *
  * Expected authored structure: 1 row with 2 cells.
- * Decorate defensively — column count is derived, the CTA cell is optional.
+ * Decorate defensively — column count is derived, cells and pieces are optional.
  */
 export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
@@ -16,14 +17,17 @@ export default function decorate(block) {
       if (link && !col.querySelector('h1, h2, h3, h4, h5, h6, ul, ol')) {
         col.classList.add('columns-cta-action-col');
       }
-      // Treat the first paragraph before the heading as an eyebrow.
-      const heading = col.querySelector('h1, h2, h3, h4, h5, h6');
-      if (heading) {
-        const eyebrow = heading.previousElementSibling;
-        if (eyebrow && eyebrow.tagName === 'P') {
-          eyebrow.classList.add('columns-cta-eyebrow');
+
+      // A paragraph whose only content is an image is the decorative accent shape.
+      [...col.children].forEach((child) => {
+        if (child.tagName === 'P') {
+          const pic = child.querySelector('picture, img');
+          const text = child.textContent.trim();
+          if (pic && text === '') {
+            child.classList.add('columns-cta-accent');
+          }
         }
-      }
+      });
     });
   });
 }

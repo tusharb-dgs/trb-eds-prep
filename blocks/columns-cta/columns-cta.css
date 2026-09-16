@@ -1,36 +1,135 @@
-/* CTA columns: single wide callout card, text on one side, CTA button on the other.
-   Structural/functional only — brand color, typography, and spacing tokens are
-   left to the design pass. */
+/* columns-cta: a single wide white callout card with a subtle drop shadow and a
+   decorative accent shape at the left edge. Left: eyebrow (brand blue) + heading
+   (coral/red) + paragraph. Right: a single brand-blue pill CTA button.
+   Values extracted from source computed styles (.narrowCardCta). */
 
+/* Card container ------------------------------------------------------------ */
+.columns-cta {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px 0 rgb(46 50 51 / 20%);
+}
+
+/* Row + cells --------------------------------------------------------------- */
 .columns-cta > div {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding: 24px;
 }
 
-.columns-cta .columns-cta-eyebrow {
+/* Decorative accent shape (coral/teal), pinned to the left edge full height.
+   Hidden on mobile, matching the source (d-none d-lg-block). */
+.columns-cta .columns-cta-accent {
+  display: none;
   margin: 0;
 }
 
-.columns-cta .columns-cta-action-col a {
-  display: inline-block;
+/* Typography ---------------------------------------------------------------- */
+.columns-cta h4 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 27px;
+  color: var(--brand-blue);
 }
 
+.columns-cta h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 24px;
+  color: rgb(192 44 87);
+}
+
+.columns-cta p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 18px;
+  color: var(--text-color);
+}
+
+/* CTA pill button ----------------------------------------------------------- */
+.columns-cta .columns-cta-action-col p {
+  margin: 0;
+}
+
+.columns-cta .columns-cta-action-col a,
+.columns-cta .columns-cta-action-col a:any-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 19px 23px;
+  border: 1px solid var(--brand-blue);
+  border-radius: 100px;
+  background-color: var(--brand-blue);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.columns-cta .columns-cta-action-col a:hover,
+.columns-cta .columns-cta-action-col a:focus-visible {
+  background-color: var(--link-hover-color);
+  border-color: var(--link-hover-color);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* White arrow icon inside the button */
+.columns-cta .columns-cta-action-col a img {
+  width: 22px;
+  height: 10px;
+  margin-left: 12px;
+}
+
+/* Desktop ------------------------------------------------------------------- */
 @media (width >= 900px) {
   .columns-cta > div {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: 24px;
+    padding: 31px 40px 31px 130px;
   }
 
-  .columns-cta > div > div {
-    flex: 1;
+  .columns-cta > div > div:first-child {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
 
   .columns-cta .columns-cta-action-col {
     flex: 0 0 auto;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+  }
+
+  /* Show + position the accent shape along the card's left edge. */
+  .columns-cta .columns-cta-accent {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    height: 100%;
+  }
+
+  .columns-cta .columns-cta-accent picture,
+  .columns-cta .columns-cta-accent img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: left top;
   }
 }
