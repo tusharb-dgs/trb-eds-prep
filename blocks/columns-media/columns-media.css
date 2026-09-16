@@ -1,8 +1,15 @@
-/* Media columns: text column paired with a media/graphic column.
-   Structural/functional only — brand color, typography, and spacing tokens are
-   left to the design pass. (Powder-blue section background is applied via
-   section-metadata, not here.) */
+/* columns-media — mechanism-of-action layout.
+   Values extracted from source computed styles (vyepti.com/how-vyepti-works).
+   The powder-blue section background is applied globally via section-metadata
+   (main .section.powder-blue) — do NOT re-apply it here.
 
+   Decorated DOM:
+   .columns-media > div (row)
+     > div.columns-media-text   : h2, p, p, ul (bulleted), h6
+     > div.columns-media-media  : p>picture (graphic) + ul.columns-media-legend + h6
+*/
+
+/* ---- Row layout (mobile-first: stacked) ---- */
 .columns-media > div {
   display: flex;
   flex-direction: column;
@@ -14,26 +21,169 @@
   height: auto;
 }
 
-.columns-media > div > div {
-  order: 1;
+/* ---- Text column ---- */
+.columns-media .columns-media-text {
+  text-align: center;
 }
 
-.columns-media > div > .columns-media-img-col {
-  order: 0;
+.columns-media .columns-media-text h2 {
+  margin: 0;
+  padding-bottom: 16px;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 24px;
+  color: var(--brand-blue);
 }
 
-.columns-media > div > .columns-media-img-col img {
-  display: block;
+.columns-media .columns-media-text p {
+  margin: 0;
+  padding-bottom: 16px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: var(--text-color);
 }
 
+.columns-media .columns-media-text ul {
+  margin: 0;
+  padding: 16px 0 30px;
+  list-style: none;
+  text-align: left;
+}
+
+.columns-media .columns-media-text li {
+  position: relative;
+  margin: 0;
+  padding: 0 0 16px 25.6px;
+  font-size: 16px;
+  line-height: 18px;
+  color: var(--text-color);
+  list-style: none;
+}
+
+.columns-media .columns-media-text li::before {
+  content: "\2022";
+  position: absolute;
+  left: 0;
+  top: -8px;
+  font-size: 30px;
+  line-height: 1;
+  color: rgb(192 44 87);
+}
+
+.columns-media .columns-media-text li:last-child {
+  padding-bottom: 0;
+}
+
+.columns-media .columns-media-text h6 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--text-color);
+}
+
+/* ---- Media column (graphic + legend) ---- */
+.columns-media .columns-media-media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* main graphic — EDS wraps the bare <img> in a <p> */
+.columns-media .columns-media-media > p {
+  margin: 0;
+  padding-bottom: 24px;
+  text-align: center;
+}
+
+.columns-media .columns-media-media > p img {
+  width: 445px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* legend list */
+.columns-media .columns-media-legend {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.columns-media .columns-media-legend li {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0 25px 24px 0;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 18px;
+  color: rgb(102 102 102);
+  list-style: none;
+}
+
+/* legend swatch — EDS wraps the swatch <img> in a <p> alongside the label <p> */
+.columns-media .columns-media-legend li p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.columns-media .columns-media-legend li p:first-child {
+  margin-right: 14px;
+}
+
+.columns-media .columns-media-legend li img {
+  width: 24px;
+  height: 24px;
+}
+
+/* legend disclaimer (h6) */
+.columns-media .columns-media-media h6 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--text-color);
+}
+
+/* ---- Desktop: side-by-side, text left-aligned ---- */
 @media (width >= 900px) {
   .columns-media > div {
+    flex-direction: row;
     align-items: center;
-    flex-direction: unset;
+    gap: 0;
   }
 
   .columns-media > div > div {
     flex: 1;
-    order: unset;
+  }
+
+  .columns-media .columns-media-text {
+    text-align: left;
+    padding: 48px 32px 24px 15px;
+  }
+
+  /* media column becomes graphic + legend side-by-side; disclaimer wraps below */
+  .columns-media .columns-media-media {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 24px;
+  }
+
+  .columns-media .columns-media-media > p {
+    flex: 1;
+    padding-bottom: 0;
+    text-align: right;
+  }
+
+  .columns-media .columns-media-legend {
+    flex-shrink: 0;
+  }
+
+  .columns-media .columns-media-media h6 {
+    flex-basis: 100%;
   }
 }
