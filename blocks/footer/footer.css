@@ -1,20 +1,92 @@
+/* VYEPTI footer — dark brand-blue band: legal link row, disclaimer, contact + social.
+   Mobile-first; min-width breakpoint enhances desktop.
+   Extracted from source: white text/links on brand-blue rgb(4 97 131). */
+
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+  background-color: var(--brand-blue);
+  color: #fff;
+  font-size: 14px;
 }
 
 footer .footer > div {
-  margin: auto;
   max-width: 1200px;
-  padding: 40px 24px 24px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+footer .footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+footer .footer a:any-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+footer .footer a:hover,
+footer .footer a:focus-visible {
+  text-decoration: underline;
 }
 
 footer .footer p {
-  margin: 0;
+  margin: 0 0 12px;
+}
+
+/* ---- Legal link row ---- */
+footer .footer-links ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ---- Disclaimer ---- */
+footer .footer-legal {
+  font-size: 12px;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* ---- Contact + social ---- */
+footer .footer-contact ul {
+  display: flex;
+  gap: 16px;
+  margin: 12px 0;
+}
+
+footer .footer-contact img {
+  height: 27px;
+  width: auto;
+}
+
+footer .footer-contact a[href^='tel:'] {
+  font-weight: 700;
+}
+
+/* Lundbeck logo (last paragraph) */
+footer .footer-contact p:last-child img {
+  height: 40px;
 }
 
 @media (width >= 900px) {
   footer .footer > div {
-    padding: 40px 32px 24px;
+    padding: 32px;
+  }
+
+  footer .footer-links ul {
+    flex-flow: row wrap;
+    gap: 24px;
+  }
+
+  footer .footer-contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  footer .footer-contact ul {
+    margin: 0;
   }
 }
