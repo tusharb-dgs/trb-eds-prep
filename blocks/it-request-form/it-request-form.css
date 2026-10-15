@@ -1,0 +1,224 @@
+@import url('../form/form.css');
+
+/* IT Request Form — card look on top of the base form block.
+ * Layout classes (set via the sheet's Style column):
+ *   col-1 … col-12  column span on a 12-column grid (full width when omitted)
+ *   inline          label beside its control; on a fieldset, fields in one row
+ *   checked         pre-selects a radio / checkbox (applied in JS)
+ */
+
+.it-request-form {
+  /* base form tokens, resolved for this block */
+  --form-field-gap: 12px;
+  --form-gap-tight: 6px;
+  --form-input-padding: 6px 10px;
+  --form-input-border-width: 1px;
+  --form-input-border-color: #ccc;
+  --form-input-hover-border-color: #999;
+  --form-input-border-radius: 3px;
+  --form-input-background: #fff;
+  --form-input-text-color: #555;
+  --form-input-outline-offset: 0;
+  --form-required-indicator-color: #d0021b;
+  --form-transition-duration: 0.15s;
+  --focus-ring-width: 2px;
+  --focus-ring-color: rgb(0 83 155 / 40%);
+
+  /* block tokens */
+  --it-form-accent: #00539b;
+  --it-form-accent-dark: #003a70;
+  --it-form-text: #333;
+  --it-form-muted: #555;
+
+  box-sizing: border-box;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 36px 20px 20px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  box-shadow: 2px 3px 6px rgb(0 0 0 / 20%);
+  color: var(--it-form-text);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.it-request-form form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--form-field-gap) 30px;
+}
+
+.it-request-form form > .field-wrapper {
+  grid-column: 1 / -1;
+}
+
+/* title */
+.it-request-form .heading-wrapper h2,
+.it-request-form .heading-wrapper h3 {
+  margin: 0 0 24px;
+  color: var(--it-form-text);
+  font-family: inherit;
+  font-weight: 400;
+  text-align: center;
+}
+
+.it-request-form .heading-wrapper h2 {
+  font-size: 22px;
+}
+
+.it-request-form .heading-wrapper h3 {
+  font-size: 18px;
+}
+
+/* labels */
+.it-request-form label {
+  margin-bottom: 4px;
+  color: var(--it-form-text);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.it-request-form label[data-required]::after {
+  margin-inline-start: 4px;
+  font-size: 12px;
+  vertical-align: super;
+  line-height: 0;
+}
+
+/* inputs */
+.it-request-form input:not([type="radio"], [type="checkbox"]),
+.it-request-form select {
+  height: 34px;
+  max-width: none;
+  font-size: 14px;
+}
+
+.it-request-form select {
+  background-color: #f5f5f5;
+}
+
+/* question group */
+.it-request-form fieldset > legend {
+  margin-bottom: 8px;
+  padding: 0;
+  color: var(--it-form-accent);
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.it-request-form .inline > fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  padding-inline-start: 20px;
+}
+
+.it-request-form .inline > fieldset > legend {
+  margin-inline-start: -20px;
+}
+
+/* radios / checkboxes */
+.it-request-form .selection-wrapper {
+  align-items: center;
+  gap: 8px;
+}
+
+.it-request-form .selection-wrapper input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--it-form-accent);
+}
+
+.it-request-form .selection-wrapper label {
+  margin: 0;
+  color: var(--it-form-muted);
+  font-weight: 700;
+}
+
+/* label beside control */
+.it-request-form .field-wrapper.inline:not(.fieldset-wrapper) {
+  grid-auto-flow: column;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: center;
+  gap: 20px;
+}
+
+.it-request-form .field-wrapper.inline:not(.fieldset-wrapper, .selection-wrapper) > label {
+  margin: 0;
+  color: var(--it-form-muted);
+  font-weight: 700;
+}
+
+.it-request-form .inline > fieldset > .field-wrapper.inline:not(.selection-wrapper) {
+  flex: 1 1 320px;
+  max-width: 540px;
+  margin-inline-start: 24px;
+}
+
+/* spacing comes from the grid / flex gaps, not sibling margins */
+.it-request-form.form form .field-wrapper,
+.it-request-form.form form fieldset .field-wrapper + .field-wrapper,
+.it-request-form.form form fieldset .selection-wrapper + .selection-wrapper {
+  margin-top: 0;
+}
+
+/* submit */
+.it-request-form .submit-wrapper {
+  justify-items: center;
+  padding-top: 12px;
+}
+
+.it-request-form button.button {
+  min-width: 96px;
+  height: 38px;
+  padding: 0 20px;
+  border: 2px solid var(--it-form-accent-dark);
+  border-radius: 0;
+  background-color: var(--it-form-accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.it-request-form button.button:hover,
+.it-request-form button.button:focus-visible {
+  background-color: var(--it-form-accent-dark);
+}
+
+.it-request-form button.button:disabled {
+  opacity: 0.6;
+}
+
+@media (width < 600px) {
+  .it-request-form .field-wrapper.inline:not(.fieldset-wrapper, .selection-wrapper) {
+    grid-auto-flow: row;
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .it-request-form .inline > fieldset > .field-wrapper.inline:not(.selection-wrapper) {
+    flex-basis: 100%;
+    margin-inline-start: 0;
+  }
+}
+
+@media (width >= 600px) {
+  .it-request-form form {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .it-request-form form > .col-1 { grid-column: span 1; }
+  .it-request-form form > .col-2 { grid-column: span 2; }
+  .it-request-form form > .col-3 { grid-column: span 3; }
+  .it-request-form form > .col-4 { grid-column: span 4; }
+  .it-request-form form > .col-5 { grid-column: span 5; }
+  .it-request-form form > .col-6 { grid-column: span 6; }
+  .it-request-form form > .col-7 { grid-column: span 7; }
+  .it-request-form form > .col-8 { grid-column: span 8; }
+  .it-request-form form > .col-9 { grid-column: span 9; }
+  .it-request-form form > .col-10 { grid-column: span 10; }
+  .it-request-form form > .col-11 { grid-column: span 11; }
+  .it-request-form form > .col-12 { grid-column: span 12; }
+}
